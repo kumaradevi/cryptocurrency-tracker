@@ -24,7 +24,7 @@ cd crypto-price-tracker
 
  React Icons: Used for adding icons to the app (e.g., up/down arrows for percentage changes).
 
-Axios: Used for fetching initial data from the API and interacting with external services.
+
 
 ## Architecture
 ## Component Structure:
