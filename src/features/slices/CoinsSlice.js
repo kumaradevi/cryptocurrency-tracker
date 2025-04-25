@@ -11,8 +11,36 @@ const coinsSlice=createSlice({
     initialState,
     reducers:{
         fetchCoins:(state,action)=>{
-            state.coins=action.payload;
+            if(Array.isArray(action.payload)){
+                state.coins=action.payload;
+            }
+           
         },
+        updateLivePrices: (state, action) => {
+            const liveUpdates = action.payload;
+            state.coins = state.coins.map((coin) => {
+              const match = liveUpdates.find(
+                (live) => live.s === `${coin.symbol.toUpperCase()}USDT`
+              );
+              if (match) {
+                return {
+                  ...coin,
+                  current_price: parseFloat(match.c),
+                  price_change_percentage_24h: (
+                    ((parseFloat(match.c) - parseFloat(match.o)) / parseFloat(match.o)) *
+                    100
+                  ).toFixed(2),
+                  market_cap_change_percentage_24h: (
+                    ((parseFloat(match.c) - parseFloat(match.o)) / parseFloat(match.o)) *
+                    100
+                  ).toFixed(2),
+                  total_volume: parseFloat(match.q),
+                };
+              }
+             
+              return coin;
+            });
+          },
         setLoading:(state,action)=>{
             state.loading=action.payload;
         },
@@ -21,6 +49,6 @@ const coinsSlice=createSlice({
         }
     }
 })
-export const {fetchCoins,setLoading,setError}=coinsSlice.actions;
+export const {fetchCoins,updateLivePrices,setLoading,setError}=coinsSlice.actions;
 export const selectCoins=(state)=>state.coins.coins;
 export default coinsSlice.reducer;

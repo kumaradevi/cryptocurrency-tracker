@@ -1,21 +1,48 @@
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Table } from './components/table/Table'
 import Navbar from './components/Navbar';
 import SearchBox from './components/SearchBox';
 import { useDispatch, useSelector} from 'react-redux';
-import { fetchCoins, selectCoins } from './features/slices/CoinsSlice';
+import { fetchCoins, selectCoins, updateLivePrices } from './features/slices/CoinsSlice';
 
 
 function App() {
   const [coins,setCoins] =useState([]);
   const [currency,setCurrency]=useState("usd");
    const [input,setInput]=useState("");
+   const wsRef = useRef(null);
   const dispatch=useDispatch();
   const coinsArr=useSelector(selectCoins);
 
    const filteredData=input ? coinsArr.filter((coin)=>coin.name.toLowerCase().includes(input)) : coinsArr;
+  
+  useEffect(()=>{
+    const ws=new WebSocket("wss://stream.binance.com:9443/ws/!miniTicker@arr");
+    wsRef.current=ws;
+    ws.onopen=()=>{
+      console.log("websocket is connected")
+    }
+    ws.onmessage=(event)=>{
+      const liveUpdates = JSON.parse(event.data);
+      console.log(liveUpdates,"live updatseeeee")
+      dispatch(updateLivePrices(liveUpdates));
       
+    }
+
+    ws.onerror=(err)=>{
+      console.log(err)
+    }
+    ws.onclose=()=>{
+      console.log("websocket is closed")
+    }
+   
+  return () => {
+    if (wsRef.current) {
+      wsRef.current.close();
+    }
+  };
+  },[])
 
   useEffect(()=>{
     const fetchCoinsData=async()=>{
