@@ -1,19 +1,22 @@
 thead{
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 0.5fr 0.5fr 0.5fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr 2fr 2fr 2fr 1fr;
     text-align: left;
     border-bottom: 1px solid #D3D3D3;
 }
 tbody tr{
     display: grid;
-    grid-template-columns: 0.5fr 2fr 1fr 0.5fr 0.5fr 0.5fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 3fr 1fr 1fr 1fr 1fr 2fr 2fr 2fr 1fr;
     text-align: left;
-   
     margin-top: 12px;
     height: 50px;
     border-bottom: 1px solid #D3D3D3;
 }
-
+table tr td{
+    display: flex;
+    align-items: center;
+   
+}
 
 .headings{
 
