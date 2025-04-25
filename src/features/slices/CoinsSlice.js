@@ -23,17 +23,18 @@ const coinsSlice=createSlice({
                 (live) => live.s === `${coin.symbol.toUpperCase()}USDT`
               );
               if (match) {
+                const newPrice = parseFloat(match.c);
+                const oldPrice = parseFloat(match.o);
                 return {
                   ...coin,
                   current_price: parseFloat(match.c),
-                  price_change_percentage_24h: (
-                    ((parseFloat(match.c) - parseFloat(match.o)) / parseFloat(match.o)) *
-                    100
-                  ).toFixed(2),
-                  market_cap_change_percentage_24h: (
-                    ((parseFloat(match.c) - parseFloat(match.o)) / parseFloat(match.o)) *
-                    100
-                  ).toFixed(2),
+                //   price_change_percentage_24h: oldPrice
+                //   ? (((newPrice - oldPrice) / oldPrice) * 100).toFixed(2)
+                //   : 0,
+                //   market_cap_change_percentage_24h: (
+                //     ((parseFloat(match.c) - parseFloat(match.o)) / parseFloat(match.o)) *
+                //     100
+                //   ).toFixed(2),
                   total_volume: parseFloat(match.q),
                 };
               }
