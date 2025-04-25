@@ -1,12 +1,52 @@
-# React + Vite
+# Crypto Price Tracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A real-time cryptocurrency price tracker application built with **React**, **Redux Toolkit**, and **WebSocket**. The app tracks the latest price, percentage change, volume, and other market data of various cryptocurrencies.
 
-Currently, two official plugins are available:
+## Setup Instructions
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### 1. Clone the repository
+git clone https://github.com/your-username/crypto-price-tracker.git
+cd crypto-price-tracker
+  ## install depedencies 
+  npm install
+  ## start the development server
+  npm run dev
 
-## Expanding the ESLint configuration
+## Tech Stack & Architecture
+  ## Tech Stack
+ React: Frontend framework used to build the UI components and manage the app's state.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+ Redux Toolkit: Used for state management, especially for managing the data coming from the WebSocket and performing asynchronous operations.
+
+ WebSocket (Binance API): Used to fetch live crypto data in real-time, including price, market cap, volume, and other statistics.
+
+ Tailwind CSS: Utility-first CSS framework used to style the app.
+
+ React Icons: Used for adding icons to the app (e.g., up/down arrows for percentage changes).
+
+Axios: Used for fetching initial data from the API and interacting with external services.
+
+## Architecture
+## Component Structure:
+
+App.jsx: The main component that handles WebSocket connections and renders the Table component.
+
+Table.jsx: Displays the list of coins and their respective prices, percentage changes, volume, etc.
+
+Redux Store: Stores the global state, including coins' data, loading state, and error handling. It is updated with real-time data coming from the WebSocket.
+
+WebSocket: Connects to the Binance API's WebSocket endpoint and listens for real-time price updates. The data is dispatched to the Redux store and then displayed in the Table.
+
+## Real-Time Data:
+
+The application continuously fetches and updates the prices and percentages every time the WebSocket sends a new message. It uses Redux to store the data globally and automatically triggers UI updates.
+
+## Features:
+
+View cryptocurrency details like name, price, 24h change, volume, market cap, and more.
+
+Real-time updates of price changes and percentage changes.
+
+Support for multiple currencies (USD, INR, etc.).
+
+Dynamic chart that displays the price movement over the last 7 days using an SVG-based polyline.
