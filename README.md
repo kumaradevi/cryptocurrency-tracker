@@ -52,4 +52,4 @@ Support for multiple currencies (USD, INR, etc.).
 Dynamic chart that displays the price movement over the last 7 days using an SVG-based polyline.
 
 ## Demo Video
-Alternatively, you can watch the demo video here :https://drive.google.com/drive/my-drive
+Alternatively, you can watch the demo video here :[https://drive.google.com/drive/my-drive](https://drive.google.com/drive/my-drive?q=type:video%20parent:0AFZFNnOxyWYeUk9PVA)
