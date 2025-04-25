@@ -50,3 +50,6 @@ Real-time updates of price changes and percentage changes.
 Support for multiple currencies (USD, INR, etc.).
 
 Dynamic chart that displays the price movement over the last 7 days using an SVG-based polyline.
+
+## Demo Video
+Alternatively, you can watch the demo video here :https://drive.google.com/drive/my-drive
